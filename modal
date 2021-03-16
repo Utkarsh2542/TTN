@@ -1,0 +1,58 @@
+import React, {Component} from 'react';
+import {Text, 
+StyleSheet, 
+Image, Button, 
+View, SafeAreaView,
+TouchableOpacity, Modal,
+TouchableOpacityBase} from 'react-native';
+
+export default class Createmod extends Component {
+  constructor(){
+    super();
+    this.state={
+      show:false
+    }
+  }
+  render() {
+    return (
+      <SafeAreaView>
+        <View style={styles.container}>
+          <Button style={styles.btn} title='Show Modal' onPress={()=>{this.setState({show:true})}}/>
+          <Modal animationType='slide' transparent={true} visible={this.state.show} >
+            <View style={{backgroundColor: 'grey', flex: 1}}>
+              <View
+                style={{
+                  backgroundColor: 'white',
+                  margin: 50,
+                  padding: 40,
+                  borderRadius: 20,
+                  marginTop: 350,
+                  marginHorizontal: 80,
+                }}>
+                <Text style={{fontSize: 25, marginHorizontal:20}}>Hello</Text>
+                <Image
+               style={{marginLeft:20}}
+                source={require('./ghost.gif')}/>
+                <Button title='Hide Modal' onPress={()=>{this.setState({show:false})}}/>
+              </View>
+            </View>
+          </Modal>
+        </View>
+      </SafeAreaView>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+    container: {
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+
+btn:{
+  
+},
+
+});
+
+
