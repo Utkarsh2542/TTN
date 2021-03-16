@@ -1,0 +1,72 @@
+import React,{useEffect, useState} from 'react';
+import {View, Text, StyleSheet, Button} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import { AppTabs } from './AppTabs';
+import { AppDrawer } from './AppDrawer';
+
+
+
+const Stack = createStackNavigator();
+ 
+function Home({navigation}) {
+    return(
+        <View style={styles.container}>
+            <Text>Home Screen</Text>
+            <Button onPress={() => {navigation.reset({
+                                            index: 0,
+                                            routes: [{ name: 'Register' }],
+                                                    });}} title={'Logout'} />
+        </View>
+    )
+}
+ 
+function Login({navigation, route}) {
+    useEffect(() => {
+        console.log(route)
+    }, []);
+ 
+    const {update} = route.params;
+    return(
+        <View style={styles.container}>
+            <Text>Login Screen</Text>
+            <Button onPress={() => {update('New Data'); }} title={'Login'} />
+        </View>
+    )
+}
+ 
+function Register({navigation}) {
+    const [username, setName] = useState("Utkarsh")
+    return(
+        <View style={styles.container}>
+            <Text>{username}</Text>
+            <Button onPress={() => navigation.navigate('Login', {from: 'Signup Screen', update:(name) => setName(name)})} title={'Go To Login'} />
+        </View>
+    )
+}
+ 
+ const Routes = ({}) => {
+    const isTabs = false;
+ 
+    return(
+        <NavigationContainer>
+            {!isTabs ? <Stack.Navigator initialRouteName={"Register"}>
+                <Stack.Screen options={{headerTitle:'Sign in'}} name={"Login"} component={Login} />
+                <Stack.Screen options={{headerTitle:'Sign up'}} name={"Register"} component={Register} />
+                <Stack.Screen options={{headerTitle:'Home'}} name={"Home"} component={Home} />
+            </Stack.Navigator> : 
+            <AppTabs />}
+            {/* <AppDrawer /> */}
+        </NavigationContainer>
+    )
+}
+const styles = StyleSheet.create({
+    container: {
+        flex:1,
+        justifyContent:'center',
+        alignItems:'center'
+    }
+})
+export default Routes;
+
