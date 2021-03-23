@@ -1,0 +1,594 @@
+Navigation code:
+import React, { Component } from 'react';
+import { Text, StyleSheet, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import Signin from './Signin';
+import Join from './Join';
+const Stack = createStackNavigator();
+function Navigate() {
+  return (
+    <NavigationContainer>
+      {' '}
+      <Stack.Navigator>
+        {' '}
+        <Stack.Screen
+          name="Join"
+          options={{ headerShown: false }}
+          component={Join}
+        />{' '}
+        <Stack.Screen name="Signin" component={Signin} />{' '}
+      </Stack.Navigator>{' '}
+    </NavigationContainer>
+  );
+}
+const styles = StyleSheet.create({});
+export default Navigate;
+
+Join Page:
+
+import React, {Component,useState} from 'react';
+import {Text, 
+StyleSheet, 
+Image, Button, 
+View, SafeAreaView,TextInput,ScrollView,
+TouchableOpacity, Modal,CheckBox,
+TouchableOpacityBase} from 'react-native';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+export default class Join extends Component {
+   constructor(props) {
+    super(props);
+    
+  }
+
+  Click = () => {
+    
+    this.props.navigation.navigate('Signin');
+  };
+  render() {
+    return (
+      <SafeAreaView>
+      <ScrollView>
+        <View style={styles.container}>
+        <View style={styles.vip}>
+          <TouchableOpacity
+          onPress={() => this.Click()}
+          >
+          <Text style={styles.txt1}>Sign In</Text>
+
+          </TouchableOpacity>
+           <TouchableOpacity
+          >
+          <Text style={styles.txt1}>Join</Text>
+
+          </TouchableOpacity>
+          
+          </View>
+          
+          <View style={styles.top}>
+             
+             <TextInput 
+             style={styles.t} 
+             placeholder="First Name"
+             
+          />
+
+          </View>
+           <View style={styles.top}>
+             
+             <TextInput 
+             style={styles.t} 
+             placeholder="Last Name"
+             
+          />
+
+          </View>
+           <View style={styles.top}>
+             
+             <TextInput 
+             style={styles.t} 
+             placeholder="Your Email"
+             
+          />
+
+          </View>
+          <View style={styles.top}>
+             
+             <TextInput 
+             style={styles.t} 
+             placeholder="Password"
+              
+          />
+          <Text style={styles.ss}>Show</Text>
+          </View>
+          <View style={styles.top}>
+             <FontAwesome5
+             style={styles.iconss}
+             name={'flag-usa'}
+             size={18}
+             />
+             <TextInput 
+             style={styles.t} 
+             placeholder="+1     |     1234567890"
+             
+          />
+        
+          </View>
+           <View style={styles.s1}>
+           
+         <Text style={styles.lol}>Male</Text>
+         <Text>Female</Text>
+         </View>
+         <View style={styles.great}>
+         <CheckBox
+          
+          style={styles.checkbox}
+        />
+         <Text style={styles.u}>Be the first to know about new arrivals,sales and promosby submitting your email . You can opt out any time . Privacy Policy</Text>
+         
+         </View>
+          <View style={styles.btn}>
+              <Button 
+             title="Join Now"
+             color="black"
+          />
+          </View>
+         <Text style={styles.rr}>or</Text> 
+         
+          <TouchableOpacity>
+           <View style={styles.top1}>
+             <FontAwesome5
+             style={styles.iconss}
+             name={'google'}
+             size={15}
+             />
+              <Text
+             style={styles.t} >
+             Sign in with Google
+         </Text>
+          </View>
+          </TouchableOpacity>
+          <TouchableOpacity>
+          <View style={styles.top2}>
+             <FontAwesome5
+             style={styles.iconss}
+             name={'facebook'}
+             size={18}
+             />
+              <Text
+             style={styles.t1} >
+             Sign in with Facebook
+         </Text>
+          </View>
+           </TouchableOpacity>
+           <TouchableOpacity>
+           <View style={styles.top3}>
+             <FontAwesome5
+             style={styles.iconss}
+             name={'apple'}
+             size={18}
+             />
+              <Text
+             style={styles.t1} >
+             Sign in with Apple
+         </Text>
+          </View>
+          </TouchableOpacity>
+          <TouchableOpacity 
+           onPress={() => this.Click()}
+          >
+           <View style={styles.top4}>
+              <Text
+             style={styles.t1} >
+             Already have an account?  Sign In
+         </Text>
+          </View>
+          </TouchableOpacity>
+         
+        </View>
+        </ScrollView>
+      </SafeAreaView>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+    container: {
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor:"#E9E8E2",
+    },
+    vip:{
+    flexDirection:"row",
+    alignContent:"center",
+    justifyContent:"center"
+
+    },
+    rr:{
+      marginTop:15
+    },
+    head:{
+    fontSize:28,
+    marginTop:40,
+    fontWeight: "bold",
+    },
+    t1:{
+      marginTop:10,
+
+    },
+    kk:{
+      marginTop:15
+    },
+    lol:{
+      marginRight:40,
+      marginLeft:-100
+    },
+    s1:{
+      flexDirection:"row",
+      marginTop:10,
+    },
+    u:{
+      fontSize:10
+    },
+    great:{
+      marginTop:10,
+      flexDirection:"row",
+      width:280
+    },
+     head1:{
+    fontSize:12,
+    color:"grey",
+    marginTop:5,
+    marginBottom:20
+    },
+    ss:{
+      marginLeft:140,
+      
+    },
+    txt1:{
+      fontSize:20,
+      marginHorizontal:33,
+      marginTop:20,
+      alignContent:"space-between"
+
+    },
+    top:{
+      backgroundColor:"#FFFFFF",
+      marginTop:20,
+      width:280,
+      height:40,
+      alignItems:"center",
+      flexDirection:"row"
+    },
+     top6:{
+      backgroundColor:"#FFFFFF",
+      marginTop:20,
+      width:280,
+      height:50,
+      alignItems:"center",
+      flexDirection:"row"
+    },
+    top1:{
+      backgroundColor:"#FFFFFF",
+      marginTop:25,
+      width:280,
+      height:40,
+      alignItems:"center",
+      flexDirection:"row",
+      justifyContent:"center"
+    },
+     top2:{
+      backgroundColor:"blue",
+      marginTop:10,
+      width:280,
+      height:40,
+      alignItems:"center",
+      flexDirection:"row",
+      justifyContent:"center"
+    },
+    top3:{
+      backgroundColor:"black",
+      marginTop:10,
+      width:280,
+      height:40,
+      alignItems:"center",
+      flexDirection:"row",
+      justifyContent:"center"
+    },
+    top4:{
+      backgroundColor:"grey",
+      marginTop:10,
+      width:280,
+      height:40,
+      alignItems:"center",
+      flexDirection:"row",
+      justifyContent:"center"
+    },
+    iconss:{
+      paddingLeft:20,
+      color:"grey"
+    },
+     t1:{
+      marginLeft:15,
+      color:"white"
+      
+    },
+    t:{
+      marginLeft:15,
+      borderColor:"white",
+      borderWidth:1,
+
+    },
+    btn:{
+      marginTop:15,
+      width:278,
+    },
+   
+   
+    log:{
+      color:"blue",
+    }
+    
+
+
+});
+
+Sign In page:
+
+import React, {Component} from 'react';
+import {Text, 
+StyleSheet, 
+Image, Button, 
+View, SafeAreaView,TextInput,
+TouchableOpacity, Modal,
+TouchableOpacityBase} from 'react-native';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+export default class Signin extends Component {
+   constructor(props) {
+    super(props);
+    this.state = {Name: '', Email: ''};
+  }
+ 
+    
+  Click = () => {
+    
+    this.props.navigation.navigate('Join');
+  };
+  render() {
+    return (
+      <SafeAreaView>
+        <View style={styles.container}>
+        <View style={styles.vip}>
+          <TouchableOpacity
+          >
+          <Text style={styles.txt1}>Sign In</Text>
+
+          </TouchableOpacity>
+           <TouchableOpacity
+          onPress={() => this.Click()}
+          >
+          <Text style={styles.txt1}>Join</Text>
+
+          </TouchableOpacity>
+          
+          </View>
+          
+          <View style={styles.top}>
+             
+             <TextInput 
+             style={styles.t} 
+             placeholder="Your Email Address"
+             
+          />
+
+          </View>
+          <View style={styles.top6}>
+             
+             <TextInput 
+             style={styles.t} 
+             placeholder="Password"
+              
+          />
+          <Text style={styles.ss}>Show</Text>
+          </View>
+          <Text style={styles.kk}>Forgot Password?</Text>
+          <View style={styles.btn}>
+              <Button 
+             title="Sign In"
+             color="black"
+          />
+          </View>
+         <Text style={styles.rr}>or</Text> 
+         
+          <TouchableOpacity>
+           <View style={styles.top1}>
+             <FontAwesome5
+             style={styles.iconss}
+             name={'google'}
+             size={15}
+             />
+              <Text
+             style={styles.t} >
+             Sign in with Google
+         </Text>
+          </View>
+          </TouchableOpacity>
+          <TouchableOpacity>
+          <View style={styles.top2}>
+             <FontAwesome5
+             style={styles.iconss}
+             name={'facebook'}
+             size={18}
+             />
+              <Text
+             style={styles.t1} >
+             Sign in with Facebook
+         </Text>
+          </View>
+           </TouchableOpacity>
+           <TouchableOpacity>
+           <View style={styles.top3}>
+             <FontAwesome5
+             style={styles.iconss}
+             name={'apple'}
+             size={18}
+             />
+              <Text
+             style={styles.t1} >
+             Sign in with Apple
+         </Text>
+          </View>
+          </TouchableOpacity>
+          <TouchableOpacity>
+           <View style={styles.top4}>
+              <Text
+             style={styles.t1} >
+             Dont have an acount ?      Join
+         </Text>
+          </View>
+          </TouchableOpacity>
+         
+        </View>
+      </SafeAreaView>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+    container: {
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor:"#E9E8E2",
+    },
+    vip:{
+    flexDirection:"row",
+    alignContent:"center",
+    justifyContent:"center"
+
+    },
+    rr:{
+      marginTop:15
+    },
+    head:{
+    fontSize:28,
+    marginTop:40,
+    fontWeight: "bold",
+    },
+    t1:{
+      marginTop:10,
+
+    },
+    kk:{
+      marginTop:15
+    },
+     head1:{
+    fontSize:12,
+    color:"grey",
+    marginTop:5,
+    marginBottom:20
+    },
+    ss:{
+      marginLeft:140
+    },
+    txt1:{
+      fontSize:20,
+      marginHorizontal:33,
+      marginTop:20,
+      alignContent:"space-between"
+
+    },
+    top:{
+      backgroundColor:"#FFFFFF",
+      marginTop:30,
+      width:280,
+      height:50,
+      alignItems:"center",
+      flexDirection:"row"
+    },
+     top6:{
+      backgroundColor:"#FFFFFF",
+      marginTop:20,
+      width:280,
+      height:50,
+      alignItems:"center",
+      flexDirection:"row"
+    },
+    top1:{
+      backgroundColor:"#FFFFFF",
+      marginTop:25,
+      width:280,
+      height:40,
+      alignItems:"center",
+      flexDirection:"row",
+      justifyContent:"center"
+    },
+     top2:{
+      backgroundColor:"blue",
+      marginTop:10,
+      width:280,
+      height:40,
+      alignItems:"center",
+      flexDirection:"row",
+      justifyContent:"center"
+    },
+    top3:{
+      backgroundColor:"black",
+      marginTop:10,
+      width:280,
+      height:40,
+      alignItems:"center",
+      flexDirection:"row",
+      justifyContent:"center"
+    },
+    top4:{
+      backgroundColor:"grey",
+      marginTop:10,
+      width:280,
+      height:40,
+      alignItems:"center",
+      flexDirection:"row",
+      justifyContent:"center"
+    },
+    iconss:{
+      paddingLeft:20,
+      color:"grey"
+    },
+     t1:{
+      marginLeft:15,
+      color:"white"
+      
+    },
+    t:{
+      marginLeft:15,
+      borderColor:"white",
+      borderWidth:1,
+
+    },
+    btn:{
+      marginTop:15,
+      width:278,
+    },
+   
+    bot:{
+      marginTop:10,
+      flexDirection:"row",
+      marginBottom:40
+      
+    },
+    log:{
+      color:"blue",
+    }
+    
+
+
+});
+
+Rendering the flatlist:
+
