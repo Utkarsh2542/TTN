@@ -1,0 +1,99 @@
+import React, {Component} from 'react';
+import {
+  Text,
+  StyleSheet,
+  View,
+  FlatList,
+  Image,
+  SafeAreaView,
+  TouchableOpacity,
+} from 'react-native';
+import Moment from 'react-moment';
+import moment from 'moment';
+import DATA from './assets/data';
+export default class Extendtime extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {currentTime: new Date()};
+  }
+  componentDidMount() {
+    const startTimer = setInterval(
+      () => this.setState({currentTime: new Date()}),
+      1000,
+    );
+  }
+
+  render() {
+    return (
+      <View style={styles.Container}>
+        <SafeAreaView>
+          
+          <FlatList
+            data={DATA}
+            renderItem={({item}) => {
+              return (
+                <View style={styles.tt}>
+                  <Image
+                    source={item.pic}
+                    style={styles.Image}
+                    resizeMode="contain"
+                  />
+                  <Text style={styles.kk}>{item.description}</Text>
+                  {moment(this.state.currentTime).format('hh:mm:ss') >=
+                  moment(item.timeStamp).format('hh:mm:ss') ? (
+                    <View style={styles.expired}>
+                      <Text style={styles.expiredText}>Expired</Text>
+                    </View>
+                  ) : (
+                    <View style={styles.expireTime}>
+                      <Text style={styles.Timertext}>Expires In</Text>
+                      <Moment
+                        style={styles.Timertext}
+                        date={item.timeStamp}
+                        format="hh:mm:ss"
+                        element={Text}
+                      />
+                    </View>
+                  )}
+                </View>
+              );
+            }}
+            keyExtractor={(item) => item.id}
+          />
+        </SafeAreaView>
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  Container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  tt: {
+    margin: 20,
+    backgroundColor: 'orange',
+    padding: 10,
+    width:300,
+    
+  },
+  Image: {
+    width: 150,
+    height: 150,
+    marginHorizontal:75,
+  },
+  kk:{
+    marginLeft:100,
+    marginVertical:10
+  },
+  
+  expired: {
+    alignItems: 'center',
+    
+  },
+  expireTime: {
+    alignItems: 'center',
+  },
+});
