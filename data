@@ -1,0 +1,29 @@
+import Moment from 'react-moment';
+import moment from 'moment';
+const DATA = [
+  {
+    id: '1',
+    pic: require('../cereals.jpg'),
+    description:"CEREALS",
+    timeStamp: moment().add(100, 's'),
+  },
+  {
+    id: '2',
+    pic: require('../vapourizer.jpg'),
+    description:"VAPOURIZER",
+    timeStamp: moment().add(200, 's'),
+  },
+  {
+    id: '3',
+    pic: require('../oximeter.jpg'),
+    description:"OXIMETER",
+    timeStamp: moment().add(150, 's'),
+  },
+  {
+    id: '4',
+    pic: require('../tabs.jpeg'),
+    description:"GREEN TABLETS",
+    timeStamp: moment().add(10, 's'),
+  },
+];
+export default DATA;
